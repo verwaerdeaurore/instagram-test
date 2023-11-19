@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostCreateRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -23,5 +24,26 @@ class PostController extends Controller
         return view('posts.show', [
             'post' => $post,
         ]);
+    }
+    public function create()
+    {
+        return view('posts.create');
+    }
+
+    public function store(PostCreateRequest $request)
+    {
+        $validatedData = $request->validated();
+        if ($request->hasFile('img_path') && $request->file('img_path')->isValid()) {
+            $imgPath = $request->file('img_path')->store('images', 'public');
+        } else {
+            $imgPath = null;
+        }
+
+        $post = Post::make();
+        $post->txt = $request->validated()['txt'];
+        $post->img_path = $request->validated()['img_path'];
+        $post->save();
+
+        return redirect()->route('posts.index');
     }
 }
