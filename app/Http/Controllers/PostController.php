@@ -40,8 +40,8 @@ class PostController extends Controller
         }
 
         $post = Post::make();
-        $post->txt = $request->validated()['txt'];
-        $post->img_path = $request->validated()['img_path'];
+        $post->txt = $validatedData['txt'];
+        $post->img_path = $imgPath;
         $post->save();
 
         return redirect()->route('posts.index');

@@ -18,7 +18,7 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'txt' => $this->faker->realTextBetween($minNbChars = 500, $maxNbChars = 2000),
+            'txt' => $this->faker->realTextBetween($minNbChars = 1, $maxNbChars = 500),
             'img_path' => function () {
                 $absolutePath = fake()->image(storage_path('app/public/images'), 640, 480, 'cats', true);
 
