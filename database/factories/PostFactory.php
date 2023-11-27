@@ -25,7 +25,7 @@ class PostFactory extends Factory
                 return str_replace(storage_path('app/public/'), '', $absolutePath);
             },
 
-            'published_at' => $this->faker->dateTimeBetween('-2 months', '+1 month'),
+            'published_at' => $this->faker->dateTimeBetween('-2 months'),
             'user_id' => User::all()->random()->id,
         ];
     }
