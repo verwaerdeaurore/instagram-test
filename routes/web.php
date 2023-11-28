@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/posts/store', [PostController::class, 'store'])->name('posts.store');
     Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show');
     Route::post('/posts/{post}/comments', [PostController::class, 'addComment'])->name('posts.comments.add');
+    Route::post('/posts/{postId}', [PostController::class, 'likePost'])->name('like.post');
+    Route::post('/user/follow/{userId}', [UserController::class, 'follow'])->name('user.follow');
 });
 
 Route::get('/dashboard', function () {

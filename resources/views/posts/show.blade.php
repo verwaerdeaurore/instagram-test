@@ -18,6 +18,19 @@
             <div class="text-gray-500">{{ $post->user->email }}</div>
         </div>
     </a>
+    <form action="{{ route('like.post', ['postId' => $post->id]) }}" method="post">
+        @csrf
+        <div>
+            <p>{{ $post->likeCount() }} Likes</p>
+        </div><button type="submit">
+            @if (auth()->user() &&
+                    auth()->user()->likes->contains('post_id', $post->id))
+                Unlike
+            @else
+                Like
+            @endif
+        </button>
+    </form>
 
     <div class="mt-8 flex items-center justify-center">
         <a href="{{ route('posts.index') }}" class="font-bold bg-white text-gray-700 px-4 py-2 rounded shadow">

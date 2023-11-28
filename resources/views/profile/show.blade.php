@@ -7,7 +7,25 @@
             <div class="text-gray-500 text-xs">
                 Membre depuis {{ $user->created_at->diffForHumans() }}
             </div>
+            <p>{{ $user->followerCount() }} Followers</p>
+
+            <form action="{{ route('user.follow', ['userId' => $user->id]) }}" method="post">
+                @csrf
+                <button type="submit">
+                    @if (auth()->user() &&
+                            auth()->user()->follows &&
+                            auth()->user()->follows->contains('following_id', $user->id))
+                        Unfollow
+                    @else
+                        Follow
+                    @endif
+                </button>
+            </form>
         </div>
+    </div>
+    <div class="mt-8">
+        <h2 class="font-bold text-xl mb-4">Biographie</h2>
+        <div class="text-gray-700 text-sm">{{ $user->bio }}</div>
     </div>
     <div class="mt-8">
         <h2 class="font-bold text-xl mb-4">Posts</h2>

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
-    protected $casts=['published_at' => 'datetime'];
+    protected $casts = ['published_at' => 'datetime'];
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -16,6 +16,10 @@ class Post extends Model
     public function likes()
     {
         return $this->hasMany(Like::class);
+    }
+    public function likeCount()
+    {
+        return $this->likes->count();
     }
     public function comments()
     {

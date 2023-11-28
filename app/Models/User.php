@@ -21,7 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'avatar_path'
+        'avatar_path',
+        'bio',
     ];
 
     /**
@@ -57,10 +58,18 @@ class User extends Authenticatable
     }
     public function followers()
     {
-        return $this->hasMany(Follow::class , 'follower_id');
+        return $this->hasMany(Follow::class, 'following_id');
     }
     public function followings()
     {
-        return $this->hasMany(Follow::class, 'following_id');
+        return $this->hasMany(Follow::class, 'follower_id');
+    }
+    public function follows()
+    {
+        return $this->hasMany(Follow::class, 'follower_id');
+    }
+    public function followerCount()
+    {
+        return $this->followers->count();
     }
 }
