@@ -1,5 +1,17 @@
 <x-guest-layout>
     <div class="m-auto w-1/2 bg-zinc-200">
+    <div class="flex m-auto border border-zinc-300 overflow-hidden w-full">
+    <div class="flex-col w-200 overflow-hidden">
+        <div class="p-4 bg-gray-200">
+            <h1 class=" font-bold text-2xl mb-4 underline decoration-pink-300 text-center uppercase text-zinc-700"> Bienvenue sur Amstramgram </h1>
+            <p class="text-mg italic ">Amstramgram plateforme de médias sociaux incontournable, révolutionne le partage en mettant l'accent sur le visuel. Les utilisateurs partagent des moments de leur vie à travers des photos et des vidéos, favorisant ainsi une connexion authentique.En somme, Amstramgram offre un espace dynamique où l'expression visuelle et les interactions sociales convergent harmonieusement.</p>
+        </div>
+        <img src="https://images2.imgbox.com/d4/1a/VVS0TKYw_o.jpg" alt="Image" class="w-full h-auto">
+
+    </div>
+
+</div>
+
         <h1 class=" font-bold text-3xl mb-4 underline decoration-pink-300 text-center uppercase text-zinc-700"> Connexion </h1>
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
