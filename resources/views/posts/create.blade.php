@@ -1,18 +1,10 @@
 <x-app-layout>
-
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('posts') }}
+²   <h2 class="font-bold text-3xl mb-4 underline decoration-pink-300 text-center uppercase text-zinc-700">
+            {{ __('Créer une publication') }}
         </h2>
-    </x-slot>
 
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-12">
-        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
-            <div class="flex justify-between mt-8">
-                <div class=" text-2xl">
-                    Créer une publication
-                </div>
-            </div>
+    <div class="max-w-7xl m-auto sm:px-6 lg:px-8 py-12">
+        <div class="bg-white overflow-hidden shadow-xl m-auto p-6">
 
             <form method="POST" action="{{ route('posts.store') }}" class="flex flex-col space-y-4 text-gray-500"
                 enctype="multipart/form-data">
@@ -20,7 +12,7 @@
                 @csrf
                 <div class="">
                     <label for="img_path" class="block text-sm font-medium text-gray-700 dark:text-gray-200">
-                        {{ __('img_path') }}
+                        {{ __('Choisir une image : ') }}
                     </label>
 
                     <div class="mt-1">
@@ -40,11 +32,12 @@
                 </div>
 
                 <div class="flex justify-end">
-                    <x-primary-button type="submit">
+                    <x-primary-button class="bg-pink-300 text-white" type="submit">
                         {{ __('Créer') }}
                     </x-primary-button>
                 </div>
             </form>
         </div>
     </div>
+     </div>
 </x-app-layout>

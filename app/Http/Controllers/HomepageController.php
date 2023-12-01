@@ -11,7 +11,7 @@ class HomepageController extends Controller
     public function index()
     {
         $posts = Post::paginate(20);
-        return view('homepage.index', [
+        return view('posts.index', [
             'posts' => $posts,
         ]);
     }
