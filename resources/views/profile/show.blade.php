@@ -1,17 +1,22 @@
 <x-app-layout>
-    <div class="bg-zinc-200 mx-auto h-full p-8">
-        <div class="flex w-full">
-            <x-avatar class="h-40 w-40" :user="$user" />
-            <div class="ml-8 mt-5 flex flex-col">
-                <div class=" font-mono uppercase text-4xl text-gray-800 font-bold">{{ $user->name }}</div>
-                <div class="italic text-gray-700 text-sm">{{ $user->email }}</div>
-                <div class="text-gray-500 text-xs">
-                    Membre depuis {{ $user->created_at->diffForHumans() }}
+    <div class="bg-zinc-200 mx-auto h-full w-2/3 p-8">
+        <div class="flex w-7/8">
+            <!-- Bloc à gauche -->
+            <div class="flex items-start">
+                <x-avatar class="h-40 w-40" :user="$user" />
+                <div class="ml-8 mt-5 flex flex-col">
+                    <div class="font-mono uppercase text-4xl text-gray-800 font-bold">{{ $user->name }}</div>
+                    <div class="italic text-gray-700 text-sm">{{ $user->email }}</div>
+                    <div class="text-gray-500 text-xs">
+                        <span class="font-bold">Amstamgramien:</span> {{ $user->created_at->diffForHumans() }}
+                    </div>
+                    <p class="m-4 text-center">{{ $user->followerCount() }} Abonnés</p>
                 </div>
+            </div>
 
-                <p class=" m-4 text-center">{{ $user->followerCount() }} Abonnés</p>
-
-                <form class= "bg-pink-400 rounded-md text-center p-2 uppercase"
+            <!-- Bloc au centre (abonnés et bouton) -->
+            <div class="ml-8 mt-5 flex flex-col items-center">
+                <form class="bg-pink-300 rounded-md text-center p-2 uppercase"
                     action="{{ route('user.follow', ['userId' => $user->id]) }}" method="post">
                     @csrf
                     <button type="submit">
@@ -24,16 +29,15 @@
                         @endif
                     </button>
                 </form>
+            </div>
 
+            <!-- Bloc à droite (bio) -->
+            <div class="ml-8 mt-5 text-gray-700 text-sm p-12 italic">
+                {{ $user->bio }}
             </div>
         </div>
-        <div class="mt-8">
-            <h2 class="font-bold text-xl mb-4">Biographie</h2>
-            <div class="text-gray-700 text-sm">{{ $user->bio }}</div>
-        </div>
-        <div class="mt-8">
-            <h2 class="font-bold text-xl mb-4">Posts</h2>
-            <ul class="grid sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-8">
+        <div class="mt-8 border-t border-pink-300 p-8">
+            <ul class="grid sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-8">
                 @forelse ($posts as $post)
                     <li>
                         <x-posts-card :post="$post" />
